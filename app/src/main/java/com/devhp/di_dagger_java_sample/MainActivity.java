@@ -19,13 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        App.getApp().getSmartPhoneComponent().inject(this);
         Log.d("onCreate", "Init OnCreate");
-        SmartPhoneComponent smartPhoneComponent = DaggerSmartPhoneComponent.builder().memoryCardModule(new MemoryCardModule( 9999)).build();
-        smartPhoneComponent.inject(this);
         smartPhone.run();
-
-
         Log.d("MyTag", serviceProvider.getProviderInfo());
+
 //        ServiceProvider serviceProvider = new ServiceProvider();
 //        SIMCard simCard = new SIMCard(serviceProvider);
 //        MemoryCard memoryCard = new MemoryCard();
