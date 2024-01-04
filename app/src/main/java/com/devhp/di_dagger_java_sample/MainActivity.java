@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
     SmartPhone smartPhone;
+
+    @Inject
+    ServiceProvider serviceProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("onCreate", "Init OnCreate");
         SmartPhoneComponent smartPhoneComponent = DaggerSmartPhoneComponent.create();
-        smartPhone = smartPhoneComponent.getSmartPhone();
+        smartPhoneComponent.inject(this);
         smartPhone.run();
 
+
+        Log.d("MyTag", serviceProvider.getProviderInfo());
 //        ServiceProvider serviceProvider = new ServiceProvider();
 //        SIMCard simCard = new SIMCard(serviceProvider);
 //        MemoryCard memoryCard = new MemoryCard();

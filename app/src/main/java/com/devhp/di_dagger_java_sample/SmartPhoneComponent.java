@@ -4,5 +4,7 @@ import dagger.Component;
 
 @Component(modules = {MemoryCardModule.class, BatteryModule.class})
 public interface SmartPhoneComponent {
-    SmartPhone getSmartPhone();
+   void inject(MainActivity mainActivity);
+
+   void inject(ServiceProvider serviceProvider);
 }
